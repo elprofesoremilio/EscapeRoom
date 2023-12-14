@@ -1,4 +1,4 @@
-package es.iescastillodelayedra;
+package es.iescastillodelayedra.painting;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,7 +11,7 @@ public class Canvas extends JPanel {
         super();
         try {
             image = ImageIO.read(Objects.requireNonNull(
-                    getClass().getClassLoader().getResource("gatopitufo.jpg")
+                    getClass().getClassLoader().getResource("imgs/gatopitufo.jpg")
                     ));
             image = image.getScaledInstance((int)(image.getWidth(null)*0.2),
                     (int)(image.getHeight(null)*0.2),

@@ -1,5 +1,7 @@
 package es.iescastillodelayedra;
 
+import es.iescastillodelayedra.painting.Canvas;
+
 import javax.swing.*;
 
 public class Main {
