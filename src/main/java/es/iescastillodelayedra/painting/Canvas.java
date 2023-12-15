@@ -6,20 +6,11 @@ import java.awt.*;
 import java.util.Objects;
 
 public class Canvas extends JPanel {
-    Image image;
+    GameImage image;
+    int x=0,y;
     public Canvas() {
         super();
-        try {
-            image = ImageIO.read(Objects.requireNonNull(
-                    getClass().getClassLoader().getResource("imgs/gatopitufo.jpg")
-                    ));
-            image = image.getScaledInstance((int)(image.getWidth(null)*0.2),
-                    (int)(image.getHeight(null)*0.2),
-                    Image.SCALE_DEFAULT);
-        } catch (Exception e) {
-            System.out.println("Error al cargar la imagen");
-            System.exit(0);
-        }
+        image = new GameImage("imgs/mario.png",0.1);
 
     }
     @Override
@@ -27,22 +18,15 @@ public class Canvas extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setBackground(Color.black);
+        y=this.getHeight()-image.getScaledImage().getHeight(null);
 
+        g2d.setBackground(Color.black);
         g2d.clearRect(0,0, this.getWidth(), this.getHeight());
 
-        g2d.drawImage(image,0,0,null);
+        g2d.drawImage(image.getScaledImage(),x,y,null);
+    }
 
-        g2d.setColor(Color.green);
-
-        g2d.fillOval(100,50, 30, 30);
-        g2d.setColor(Color.blue);
-        g2d.drawOval(100,50, 30,30);
-
-        g2d.fillRect(0, 0, 30, 30);
-        g2d.setColor(Color.green);
-        g2d.drawRect(100, 100, 30, 30);
-
-
+    public void update() {
+        x++;
     }
 }
