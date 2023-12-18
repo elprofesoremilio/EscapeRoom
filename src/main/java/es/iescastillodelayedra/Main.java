@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        final Canvas canvas = new Canvas();;
+        final Canvas canvas = new Canvas();
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Primer Juego");
             frame.setSize(400,300);
@@ -24,6 +24,8 @@ public class Main {
         1.- paint
         2.- update
          */
+        canvas.init(350, 150);
+
         while (true) {
             canvas.repaint();
             canvas.update();

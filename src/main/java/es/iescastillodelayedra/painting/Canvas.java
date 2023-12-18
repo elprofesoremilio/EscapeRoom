@@ -1,17 +1,26 @@
 package es.iescastillodelayedra.painting;
 
+import es.iescastillodelayedra.gameobjects.Star;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Canvas extends JPanel {
     GameImage image;
     int velocityX = 1;
     int x=0,y;
-    int r=0, g=200,b=255;
+    int rFondo =0, gFondo =200, bFondo =255;
+    ArrayList<Star> stars = new ArrayList<>();
     public Canvas() {
         super();
         image = new GameImage("imgs/mario.png",0.1);
+    }
 
+    public void init(int width, int height) {
+        for (int i = 0; i < 50; i++) {
+            stars.add(new Star(width,height,(byte)3));
+        }
     }
     @Override
     public void paint(Graphics graphics) {
@@ -20,26 +29,25 @@ public class Canvas extends JPanel {
 
         y=this.getHeight()-image.getScaledImage().getHeight(null);
 
-        g2d.setBackground(new Color(r,g,b));
-        g2d.setColor(new Color(250,250,250));
+        g2d.setBackground(new Color(rFondo, gFondo, bFondo));
 
         g2d.clearRect(0,0, this.getWidth(), this.getHeight());
 
+        for (Star star : stars) {
+            g2d.setColor(new Color(star.bright, star.bright, star.bright));
+            g2d.fillOval(star.position.x, star.position.y, star.radius, star.radius);
+        }
+
+        g2d.setColor(new Color(250,250,250));
         g2d.fillOval(250,30,40,40);
-        g2d.fillOval(20,40,3,3);
-        g2d.fillOval(200,60,3,3);
-        g2d.fillOval(70,10,3,3);
-        g2d.fillOval(120,50,3,3);
-        g2d.fillOval(320,15,3,3);
+
 
         g2d.drawImage(image.getScaledImage(),x,y,null);
     }
 
     public void update() {
-        if (g>0) {
-            g--;
-        }
-        if (b>20) {b--;}
+        if (gFondo >0) gFondo--;
+        if (bFondo >20) bFondo--;
 
         if (x+velocityX>=this.getWidth()-image.getScaledImage().getWidth(null)) {
             velocityX=-1;
@@ -47,5 +55,9 @@ public class Canvas extends JPanel {
             velocityX=1;
         }
         x+=velocityX;
+
+        for (Star star : stars) {
+            star.update();
+        }
     }
 }
