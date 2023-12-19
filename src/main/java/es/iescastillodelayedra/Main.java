@@ -12,7 +12,6 @@ public class Main {
             frame.setSize(400,300);
             frame.setLocationRelativeTo(null);
 
-
             frame.getContentPane().add(canvas);
 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +23,7 @@ public class Main {
         1.- paint
         2.- update
          */
-        canvas.init(350, 150);
+        canvas.init(350, 100);
 
         while (true) {
             canvas.repaint();

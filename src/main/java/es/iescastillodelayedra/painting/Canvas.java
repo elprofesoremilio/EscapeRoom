@@ -1,5 +1,6 @@
 package es.iescastillodelayedra.painting;
 
+import es.iescastillodelayedra.gameobjects.GameObject;
 import es.iescastillodelayedra.gameobjects.Star;
 
 import javax.swing.*;
@@ -7,14 +8,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
-    GameImage image;
-    int velocityX = 1;
-    int x=0,y;
+    GameObject mario;
     int rFondo =0, gFondo =200, bFondo =255;
     ArrayList<Star> stars = new ArrayList<>();
     public Canvas() {
         super();
-        image = new GameImage("imgs/mario.png",0.1);
+        mario = new GameObject(
+                new GameImage("imgs/mario.png",0.1),
+                new Point(0,200),
+                new Point(1,-1)
+        );
+
     }
 
     public void init(int width, int height) {
@@ -27,7 +31,6 @@ public class Canvas extends JPanel {
 
         Graphics2D g2d = (Graphics2D) graphics;
 
-        y=this.getHeight()-image.getScaledImage().getHeight(null);
 
         g2d.setBackground(new Color(rFondo, gFondo, bFondo));
 
@@ -42,19 +45,14 @@ public class Canvas extends JPanel {
         g2d.fillOval(250,30,40,40);
 
 
-        g2d.drawImage(image.getScaledImage(),x,y,null);
+        g2d.drawImage(mario.image.getScaledImage(),mario.position.x,mario.position.y,null);
     }
 
     public void update() {
         if (gFondo >0) gFondo--;
         if (bFondo >20) bFondo--;
 
-        if (x+velocityX>=this.getWidth()-image.getScaledImage().getWidth(null)) {
-            velocityX=-1;
-        } else if (x-velocityX<0) {
-            velocityX=1;
-        }
-        x+=velocityX;
+        mario.update();
 
         for (Star star : stars) {
             star.update();

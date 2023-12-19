@@ -11,7 +11,6 @@ public class Star {
 
     public Star(int width, int height, byte radius) {
         Random random = new Random();
-        System.out.println(width + "," + height);
 
         position = new Point(random.nextInt(width),random.nextInt(height));
         this.radius = (byte) (random.nextInt(radius)+1);
