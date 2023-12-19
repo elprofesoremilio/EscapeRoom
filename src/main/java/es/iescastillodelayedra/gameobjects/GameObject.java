@@ -18,6 +18,7 @@ public class GameObject {
     public void update() {
         position.x += velocity.x;
         position.y += velocity.y;
+        if (position.y > 200) position.y=200;
     }
 
 

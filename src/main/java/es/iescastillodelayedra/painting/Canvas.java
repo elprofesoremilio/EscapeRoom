@@ -50,7 +50,7 @@ public class Canvas extends JPanel {
             if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_A) {
                 mario.velocity.x = 0;
             } else if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S) {
-                mario.velocity.y = 0;
+                mario.velocity.y = 1;
             }
 
         }
