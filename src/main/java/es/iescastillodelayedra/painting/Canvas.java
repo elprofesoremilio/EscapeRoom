@@ -5,6 +5,9 @@ import es.iescastillodelayedra.gameobjects.Star;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
@@ -16,9 +19,41 @@ public class Canvas extends JPanel {
         mario = new GameObject(
                 new GameImage("imgs/mario.png",0.1),
                 new Point(0,200),
-                new Point(1,-1)
+                new Point(0,0)
         );
+        MyKeyAdapter listener = new MyKeyAdapter();
+        this.addKeyListener(listener);
+        setFocusable(true);
+    }
 
+    public class MyKeyAdapter implements KeyListener {
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_D) {
+                mario.velocity.x = 1;
+            } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                mario.velocity.x = -1;
+            } else if (e.getKeyCode() == KeyEvent.VK_W) {
+                mario.velocity.y = -1;
+            } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                mario.velocity.y = 1;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_A) {
+                mario.velocity.x = 0;
+            } else if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S) {
+                mario.velocity.y = 0;
+            }
+
+        }
     }
 
     public void init(int width, int height) {
