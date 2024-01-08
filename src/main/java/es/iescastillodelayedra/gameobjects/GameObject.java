@@ -4,11 +4,12 @@ import es.iescastillodelayedra.painting.GameImage;
 
 import java.awt.*;
 
-public class GameObject {
+public abstract class GameObject {
     public GameImage image;
     public Point position;
     public Point velocity;
 
+    public GameObject() {}
     public GameObject(GameImage image, Point position, Point velocity) {
         this.image = image;
         this.position = position;
@@ -21,5 +22,6 @@ public class GameObject {
         if (position.y > 200) position.y=200;
     }
 
+    public abstract void paint(Graphics2D g2d);
 
 }

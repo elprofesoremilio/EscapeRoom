@@ -3,12 +3,13 @@ package es.iescastillodelayedra.gameobjects;
 import java.awt.*;
 import java.util.Random;
 
-public class Star {
+public class Star extends GameObject {
     public Point position;
     public short bright;
     public byte radius;
     private boolean apagando = true;
 
+    public Star() {}
     public Star(int width, int height, byte radius) {
         Random random = new Random();
 
@@ -16,7 +17,7 @@ public class Star {
         this.radius = (byte) (random.nextInt(radius)+1);
         bright = (short)random.nextInt(256);
     }
-
+    @Override
     public void update() {
         if (apagando) {
             if (bright > 0) bright--;
@@ -27,6 +28,11 @@ public class Star {
         }
     }
 
+    @Override
+    public void paint(Graphics2D g2d) {
+        g2d.setColor(new Color(bright, bright, bright));
+        g2d.fillOval(position.x, position.y, radius, radius);
+    }
 
 
 }

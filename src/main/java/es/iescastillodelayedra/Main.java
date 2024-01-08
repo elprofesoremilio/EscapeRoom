@@ -29,7 +29,6 @@ public class Main {
             canvas.repaint();
             canvas.update();
             Thread.sleep(5);
-
         }
 
     }
