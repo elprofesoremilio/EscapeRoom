@@ -58,6 +58,9 @@ public class Canvas extends JPanel {
             objects.add(new Star(width,height,(byte)3));
         }
         objects.add(moon);
+        objects.add(new Pajaro(new GameImage("imgs/pajaro.png",0.2),new Point(0,0)));
+        objects.add(new Goomba(new GameImage("imgs/goomba.png",0.4),new Point(20,100),new Point(1,0)));
+        objects.add(new Ghost(new GameImage("imgs/ghost.png",0.4),new Point(20,150),new Point(1,0)));
         objects.add(player);
     }
 

@@ -19,7 +19,6 @@ public abstract class GameObject {
     public void update() {
         position.x += velocity.x;
         position.y += velocity.y;
-        if (position.y > 200) position.y=200;
     }
 
     public abstract void paint(Graphics2D g2d);
